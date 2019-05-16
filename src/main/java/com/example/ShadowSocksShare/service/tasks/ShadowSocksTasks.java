@@ -53,6 +53,14 @@ public class ShadowSocksTasks {
 	@Qualifier("promPHPCrawlerServiceImpl")
 	private ShadowSocksCrawlerService promPHPCrawlerServiceImpl;
 
+	@Autowired
+	@Qualifier("liesauerCrawlerServiceImpl")
+	private ShadowSocksCrawlerService LiesauerCrawlerServiceImpl;
+
+	@Autowired
+	@Qualifier("ssrshareCrawlerServiceImpl")
+	private ShadowSocksCrawlerService ssrshareCrawlerServiceImpl;
+
 
 	// https://global.ishadowx.net/
 	@Scheduled(cron = "0 10 0/1 * * ?")
@@ -106,6 +114,17 @@ public class ShadowSocksTasks {
 	@Scheduled(cron = "0 10 0/1 * * ?")
 	public void promPHPCrawler() {
 		shadowSocksSerivce.crawlerAndSave(promPHPCrawlerServiceImpl);
+	}
+
+	// https://www.liesauer.net/yogurt/subscribe?ACCESS_TOKEN=DAYxR3mMaZAsaqUb
+	@Scheduled(cron = "0 10 0/1 * * ?")
+	public void LiesauerCrawler() {
+		shadowSocksSerivce.crawlerAndSave(LiesauerCrawlerServiceImpl);
+	}
+	// https://raw.githubusercontent.com/ImLaoD/sub/master/ssrshare.com
+	@Scheduled(cron = "0 10 0/1 * * ?")
+	public void ssrshareCrawler() {
+		shadowSocksSerivce.crawlerAndSave(ssrshareCrawlerServiceImpl);
 	}
 
 	/**
