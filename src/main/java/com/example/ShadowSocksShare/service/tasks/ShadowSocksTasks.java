@@ -61,6 +61,10 @@ public class ShadowSocksTasks {
 	@Qualifier("ssrshareCrawlerServiceImpl")
 	private ShadowSocksCrawlerService ssrshareCrawlerServiceImpl;
 
+	@Autowired
+	@Qualifier("dxxzstCrawlerServiceImpl")
+	private ShadowSocksCrawlerService dxxzstCrawlerServiceImpl;
+
 
 	// https://global.ishadowx.net/
 	@Scheduled(cron = "0 10 0/1 * * ?")
@@ -125,6 +129,12 @@ public class ShadowSocksTasks {
 	@Scheduled(cron = "0 10 0/1 * * ?")
 	public void ssrshareCrawler() {
 		shadowSocksSerivce.crawlerAndSave(ssrshareCrawlerServiceImpl);
+	}
+
+	// https://github.com/dxxzst/Free-SS-SSR
+	@Scheduled(cron = "0 10 0/1 * * ?")
+	public void dxxzstCrawler() {
+		shadowSocksSerivce.crawlerAndSave(dxxzstCrawlerServiceImpl);
 	}
 
 	/**
