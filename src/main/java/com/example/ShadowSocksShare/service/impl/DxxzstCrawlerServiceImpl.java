@@ -77,51 +77,6 @@ public class DxxzstCrawlerServiceImpl extends ShadowSocksCrawlerService {
 		return set;
 
 	}
-		// SSR 订阅地址内容
-//		String htmlSrc = document.outerHtml();
-//		String pattern = "ssr:(.*?)";
-//		log.debug("---------------->dxxzsthtml", htmlSrc);
-//		Matcher m = Pattern.compile(pattern).matcher(htmlSrc);
-//		Set<String> ssrLinkSet = new HashSet<>(m.groupCount());
-//		while (m.find()){
-//			ssrLinkSet.add("ssr:"+m.group());
-//		}
-//		 log.debug("---------------->{}={}", ssrLinkSet.size()+ "", ssrLinkSet);
-//		Set<ShadowSocksDetailsEntity> set = Collections.synchronizedSet(new HashSet<>(ssrLinkSet.size()));
-//
-//
-//
-//
-//		Set<ShadowSocksDetailsEntity> set = new HashSet<>(ssList.size());
-//
-//		for (int i = 0; i < ssList.size(); i++) {
-//		for (String str : ssrLinkSet) {
-//			try {
-//				if (StringUtils.isNotBlank(str)) {
-//					ShadowSocksDetailsEntity ss = parseLink(str.trim());
-//					ss.setValid(false);
-//					ss.setValidTime(new Date());
-//					ss.setTitle("免费账号 | 云端框架");
-//					ss.setRemarks("Dxxzst");
-//					ss.setGroup("Dxxzst");
-//
-//					// 测试网络
-//					if (isReachable(ss))
-//						ss.setValid(true);
-//
-//					// 无论是否可用都入库
-//					set.add(ss);
-//
-//					log.debug("*************** 第 {} 条 ***************{}{}", set.size(), System.lineSeparator(), ss);
-//					// log.debug("{}", ss.getLink());
-//				}
-//			} catch (Exception e) {
-//				log.error(e.getMessage(), e);
-//			}
-//		}
-//
-//		return set;
-//	}
 
 	/**
 	 * 目标网站 URL
