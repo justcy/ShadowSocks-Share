@@ -1,6 +1,6 @@
 # 欢迎访问本项目!
 
-示例站点：https://shadowsocks-share.herokuapp.com   
+示例站点：https://justcy-ssr.herokuapp.com  
 
 本项目不具备代理及账号管理能力。只负责汇集目标站点信息，便于大家查看、订阅。账号来之不易，请支持源站点。
 
@@ -65,7 +65,7 @@ https://cloudfra.com/ | 是 | 从 0 点 10 分开始，每 3 小时
 ### 项目部署（推荐）
 
 1. 运行环境：JAVA 8 或更高版本（[官方下载](http://www.oracle.com/technetwork/java/javase/downloads/index.html)）
-1. [下载](https://github.com/zc-zh-001/ShadowSocks-Share/releases)最新包，并解压
+1. [下载](https://github.com/justcy/ShadowSocks-Share/releases)最新包，并解压
 1. 软件配置（一般不需要修改。配置文件路径：config\application-dev.yml）
 1. 执行 run.bat （Windows）
 1. 浏览器访问：[http://localhost:8080](http://localhost:8080)
@@ -105,7 +105,10 @@ free-ss 代理 | PROXY_FREE-SS_SOCKS | proxy.free-ss.socks | boolean | false | �
 > - 为避免爬虫太多对源站点产生影响及账号安全。**本站提供的服务能够满足需求时，请避免自行部署项目。**
 
 
-## TO DO
+## Donate
 
-1. 计划支持下列站点：
-    1. https://github.com/max2max/freess/wiki/%E5%85%8D%E8%B4%B9ss%E8%B4%A6%E5%8F%B7
+若觉得本项目对您有所帮助，欢迎start
+
+如果项目对你有帮助,你可以选择给我一些鼓励:)
+
+![赞助](http://blog.kanter.cn/assets/images/donate.jpeg)
