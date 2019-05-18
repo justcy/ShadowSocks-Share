@@ -65,6 +65,10 @@ public class ShadowSocksTasks {
 	@Qualifier("dxxzstCrawlerServiceImpl")
 	private ShadowSocksCrawlerService dxxzstCrawlerServiceImpl;
 
+	@Autowired
+	@Qualifier("fndroidCrawlerServiceImpl")
+	private ShadowSocksCrawlerService fndroidCrawlerServiceImpl;
+
 
 	// https://global.ishadowx.net/
 	@Scheduled(cron = "0 10 0/1 * * ?")
@@ -136,6 +140,13 @@ public class ShadowSocksTasks {
 	public void dxxzstCrawler() {
 		shadowSocksSerivce.crawlerAndSave(dxxzstCrawlerServiceImpl);
 	}
+
+	// https://raw.githubusercontent.com/Fndroid/ss-subscribe/master/test/subscrib-data
+	@Scheduled(cron = "0 10 0/2 * * ?")
+	public void fndroidCrawler() {
+		shadowSocksSerivce.crawlerAndSave(fndroidCrawlerServiceImpl);
+	}
+
 
 	/**
 	 * SS 有效性检查，每 1 小时
