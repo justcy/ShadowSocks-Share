@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -43,46 +44,84 @@ public class DxxzstCrawlerServiceImpl extends ShadowSocksCrawlerService {
 	// 解析 连接方式
 	@Override
 	protected Set<ShadowSocksDetailsEntity> parse(Document document) {
-		Elements ssList = document.select("td");
-		// SSR 订阅地址内容
-		String htmlSrc = document.text();
-		String pattern = "ssr:(.*?)";
-		Matcher m = Pattern.compile(pattern).matcher(htmlSrc);
-		String[] ssrLinkList;
-		Set<String> ssrLinkSet = new HashSet<>(m.groupCount());
-		while (m.find()){
-			ssrLinkSet.add("ssr:"+m.group());
-		}
-		// log.debug("---------------->{}={}", ssrLinkList.length + "", ssrLinkList);
-		Set<ShadowSocksDetailsEntity> set = Collections.synchronizedSet(new HashSet<>(ssrLinkSet.size()));
+		Elements ssList = document.select("td[align]:contains(ssr:)");
 
-		for (String str : ssrLinkSet) {
+		Set<ShadowSocksDetailsEntity> set = new HashSet<>(ssList.size());
+
+		for (int i = 0; i < ssList.size(); i++) {
 			try {
-				if (StringUtils.isNotBlank(str)) {
-					ShadowSocksDetailsEntity ss = parseLink(str.trim());
-					ss.setValid(false);
-					ss.setValidTime(new Date());
-					ss.setTitle("免费账号 | 云端框架");
-					ss.setRemarks("Dxxzst");
-					ss.setGroup("Dxxzst");
+				Element element = ssList.get(i);
+				// 取 a 信息，为 ss 信息
+				String ssURL = element.text();
 
-					// 测试网络
-					if (isReachable(ss))
-						ss.setValid(true);
+				ShadowSocksDetailsEntity ss = parseLink(ssURL);
+				ss.setValid(false);
+				ss.setValidTime(new Date());
+				ss.setTitle(document.title());
+				ss.setRemarks(TARGET_URL);
+				ss.setGroup("Dxxzst");
 
-					// 无论是否可用都入库
-					set.add(ss);
+				// 测试网络
+				if (isReachable(ss))
+					ss.setValid(true);
 
-					log.debug("*************** 第 {} 条 ***************{}{}", set.size(), System.lineSeparator(), ss);
-					// log.debug("{}", ss.getLink());
-				}
+				// 无论是否可用都入库
+				set.add(ss);
+
+				log.debug("*************** 第 {} 条 ***************{}{}", i + 1, System.lineSeparator(), ss);
+				// log.debug("{}", ss.getLink());
 			} catch (Exception e) {
 				log.error(e.getMessage(), e);
 			}
 		}
-
 		return set;
+
 	}
+		// SSR 订阅地址内容
+//		String htmlSrc = document.outerHtml();
+//		String pattern = "ssr:(.*?)";
+//		log.debug("---------------->dxxzsthtml", htmlSrc);
+//		Matcher m = Pattern.compile(pattern).matcher(htmlSrc);
+//		Set<String> ssrLinkSet = new HashSet<>(m.groupCount());
+//		while (m.find()){
+//			ssrLinkSet.add("ssr:"+m.group());
+//		}
+//		 log.debug("---------------->{}={}", ssrLinkSet.size()+ "", ssrLinkSet);
+//		Set<ShadowSocksDetailsEntity> set = Collections.synchronizedSet(new HashSet<>(ssrLinkSet.size()));
+//
+//
+//
+//
+//		Set<ShadowSocksDetailsEntity> set = new HashSet<>(ssList.size());
+//
+//		for (int i = 0; i < ssList.size(); i++) {
+//		for (String str : ssrLinkSet) {
+//			try {
+//				if (StringUtils.isNotBlank(str)) {
+//					ShadowSocksDetailsEntity ss = parseLink(str.trim());
+//					ss.setValid(false);
+//					ss.setValidTime(new Date());
+//					ss.setTitle("免费账号 | 云端框架");
+//					ss.setRemarks("Dxxzst");
+//					ss.setGroup("Dxxzst");
+//
+//					// 测试网络
+//					if (isReachable(ss))
+//						ss.setValid(true);
+//
+//					// 无论是否可用都入库
+//					set.add(ss);
+//
+//					log.debug("*************** 第 {} 条 ***************{}{}", set.size(), System.lineSeparator(), ss);
+//					// log.debug("{}", ss.getLink());
+//				}
+//			} catch (Exception e) {
+//				log.error(e.getMessage(), e);
+//			}
+//		}
+//
+//		return set;
+//	}
 
 	/**
 	 * 目标网站 URL
