@@ -61,7 +61,7 @@ public class Free_yitianjianssCrawlerServiceImpl extends ShadowSocksCrawlerServi
 				ss.setValid(false);
 				ss.setValidTime(new Date());
 				ss.setTitle(document.title());
-				ss.setRemarks(TARGET_URL);
+				ss.setRemarks("justcy_G");
 				ss.setGroup("ShadowSocks-Share");
 
 				// 测试网络

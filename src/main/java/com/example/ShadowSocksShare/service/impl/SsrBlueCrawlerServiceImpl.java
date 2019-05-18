@@ -49,7 +49,7 @@ public class SsrBlueCrawlerServiceImpl extends ShadowSocksCrawlerService {
 				ss.setValid(false);
 				ss.setValidTime(new Date());
 				ss.setTitle(document.title());
-				ss.setRemarks(TARGET_URL);
+				ss.setRemarks("justcy_E");
 				ss.setGroup("ShadowSocks-Share");
 
 				// 测试网络

@@ -56,7 +56,7 @@ public class FndroidCrawlerServiceImpl extends ShadowSocksCrawlerService {
 					ss.setValid(false);
 					ss.setValidTime(new Date());
 					ss.setTitle("免费账号 | 云端框架");
-					ss.setRemarks("ssrshare.com");
+					ss.setRemarks("justcy_C");
 					ss.setGroup("Fndroid");
 
 					// 测试网络

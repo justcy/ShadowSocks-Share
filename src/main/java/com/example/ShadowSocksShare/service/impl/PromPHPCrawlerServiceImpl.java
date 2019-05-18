@@ -73,7 +73,7 @@ public class PromPHPCrawlerServiceImpl extends ShadowSocksCrawlerService {
 					ss.setValid(false);
 					ss.setValidTime(new Date());
 					ss.setTitle("免费账号 | 云端框架");
-					ss.setRemarks("https://cloudfra.com/");
+					ss.setRemarks("Justcy_F");
 					ss.setGroup("ShadowSocks-Share");
 
 					// 测试网络
