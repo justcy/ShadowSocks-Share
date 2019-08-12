@@ -47,10 +47,11 @@ public abstract class ShadowSocksCrawlerService {
 	public static boolean isReachable(ShadowSocksDetailsEntity ss) {
 		try (Socket socket = new Socket()) {
 			socket.connect(new InetSocketAddress(ss.getServer(), ss.getServer_port()), SOCKET_TIME_OUT);
-			InetAddress address;
-			address = InetAddress.getByAddress(ss.getServer().getBytes());
-
-			return address.isReachable(SOCKET_TIME_OUT);
+			return true;
+//			InetAddress address;
+//			address = InetAddress.getByAddress(ss.getServer().getBytes());
+//
+//			return address.isReachable(SOCKET_TIME_OUT);
 		} catch (IOException e) {
 			// log.error(e.getMessage(), e);
 		}
