@@ -17,9 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Socket;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -41,7 +39,7 @@ public abstract class ShadowSocksCrawlerService {
 	// 目标网站请求超时时间（60 秒）
 	protected static final int TIME_OUT = 60 * 1000;
 	// 测试网络超时时间（3 秒）
-	protected static final int SOCKET_TIME_OUT = 200;
+	protected static final int SOCKET_TIME_OUT = 300;
 
 	/**
 	 * 网络连通性测试
@@ -49,7 +47,10 @@ public abstract class ShadowSocksCrawlerService {
 	public static boolean isReachable(ShadowSocksDetailsEntity ss) {
 		try (Socket socket = new Socket()) {
 			socket.connect(new InetSocketAddress(ss.getServer(), ss.getServer_port()), SOCKET_TIME_OUT);
-			return true;
+			InetAddress address;
+			address = InetAddress.getByAddress(ss.getServer().getBytes());
+
+			return address.isReachable(SOCKET_TIME_OUT);
 		} catch (IOException e) {
 			// log.error(e.getMessage(), e);
 		}
