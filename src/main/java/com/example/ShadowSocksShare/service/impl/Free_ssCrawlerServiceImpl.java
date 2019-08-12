@@ -77,7 +77,7 @@ public class Free_ssCrawlerServiceImpl extends ShadowSocksCrawlerService {
 
 			if (waitForAjax(driver)) {
 
-				TimeUnit.SECONDS.sleep(3);
+				TimeUnit.SECONDS.sleep(10);
 
 				List<WebElement> divList = driver.findElements(By.xpath("//div[contains(@class, 'dataTables_wrapper')]"));
 				for (WebElement dev : divList) {
